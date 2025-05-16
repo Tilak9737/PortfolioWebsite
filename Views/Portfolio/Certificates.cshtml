@@ -1,0 +1,378 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Certificates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="intro-section">
+    <div class="intro-container">
+        <h1>My Certificates</h1>
+        <p class="tagline">Credentials showcasing my technical expertise.</p>
+    </div>
+</section>
+
+<section class="certificates-section">
+    <div class="certificates-container">
+        <h2>Certifications Earned</h2>
+        <div class="certificates-grid">
+            <div class="certificate-card" data-pdf="/files/CS_FCC.pdf" style="animation-delay: 0.2s;">
+                <h3>C# Certification</h3>
+                <p>Issued by freeCodeCamp</p>
+            </div>
+            <div class="certificate-card" data-pdf="/files/UpGrad (React).pdf" style="animation-delay: 0.3s;">
+                <h3>React.js Certification</h3>
+                <p>Issued by upGrad</p>
+            </div>
+            <div class="certificate-card" data-pdf="/files/Web Development Training - Certificate of Completion (1).pdf" style="animation-delay: 0.4s;">
+                <h3>Web Development</h3>
+                <p>Issued by Internshala</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-content">
+        <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+        <div class="pdf-modal-buttons">
+            <a id="downloadBtn" class="modal-btn download" href="#" download>Download</a>
+            <button class="modal-btn close" id="closePdfModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <div class="cta-card">
+            <p>
+                Explore my <a href="https://github.com/yourusername" target="_blank">GitHub</a> or <a href="/Portfolio/Contact">connect</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.certificate-card');
+        const pdfModal = document.getElementById('pdfModal');
+        const pdfFrame = document.getElementById('pdfFrame');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const closeBtn = document.getElementById('closePdfModal');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const pdfUrl = card.getAttribute('data-pdf');
+                pdfFrame.src = pdfUrl;
+                downloadBtn.href = pdfUrl;
+                pdfModal.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            pdfModal.style.display = 'none';
+            pdfFrame.src = '';
+        });
+
+        pdfModal.addEventListener('click', (e) => {
+            if (e.target === pdfModal) {
+                pdfModal.style.display = 'none';
+                pdfFrame.src = '';
+            }
+        });
+    });
+</script>
+
+<style>
+    .intro-section {
+        background: #080808;
+        padding: 25px 10px;
+        text-align: center;
+    }
+
+    .intro-container {
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+        .intro-container h1 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: #eceff1;
+            letter-spacing: 2px;
+            text-shadow: 0 0 3px rgba(77, 182, 172, 0.15);
+            margin-bottom: 10px;
+        }
+
+    .tagline {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: #80d8ff;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    .certificates-section {
+        background: #0d0d0d;
+        padding: 25px 10px;
+    }
+
+    .certificates-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .certificates-container h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #eceff1;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+    .certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .certificate-card {
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        opacity: 0;
+        animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        min-width: 180px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+        .certificate-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+            border-color: #80d8ff;
+            background: rgba(128, 216, 255, 0.03);
+        }
+
+        .certificate-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #eceff1;
+            margin-bottom: 6px;
+            letter-spacing: 0.8px;
+        }
+
+        .certificate-card p {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #b0bec5;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+    .pdf-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pdf-modal-content {
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 15px;
+        max-width: 90%;
+        max-height: 90%;
+        width: 800px;
+        box-shadow: 0 0 15px rgba(128, 216, 255, 0.2);
+        border: 1px solid #b0bec5;
+        animation: fadeInModal 0.3s ease-out;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .pdf-modal-content iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+    .pdf-modal-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .modal-btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        font-weight: 400;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+    }
+
+        .modal-btn.download {
+            background: #80d8ff;
+            color: #0d0d0d;
+        }
+
+            .modal-btn.download:hover {
+                background: #4db6ac;
+            }
+
+        .modal-btn.close {
+            background: #b0bec5;
+            color: #0d0d0d;
+        }
+
+            .modal-btn.close:hover {
+                background: #78909c;
+            }
+
+    .cta-section {
+        background: #080808;
+        padding: 25px 10px;
+        text-align: center;
+    }
+
+    .cta-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cta-card {
+        background: #1a1a1a;
+        border-radius: 6px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+        .cta-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+        }
+
+        .cta-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #b0bec5;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-card a {
+            color: #80d8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .cta-card a:hover {
+                color: #4db6ac;
+            }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@keyframes fadeInModal {
+        from
+
+    {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .intro-container h1
+
+    {
+        font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+    }
+
+    .certificates-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .certificate-card {
+        padding: 10px;
+        min-width: unset;
+    }
+
+        .certificate-card h3 {
+            font-size: 1.1rem;
+        }
+
+        .certificate-card p {
+            font-size: 0.8rem;
+        }
+
+    .pdf-modal-content {
+        width: 95%;
+        padding: 10px;
+    }
+
+        .pdf-modal-content iframe {
+            height: 300px;
+        }
+
+    .modal-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .cta-card p {
+        font-size: 0.9rem;
+    }
+
+    }
+</style>

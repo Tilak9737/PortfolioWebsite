@@ -1,0 +1,337 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="intro-section">
+    <div class="intro-container">
+        <h1>My Projects</h1>
+        <p class="tagline">Showcasing my passion for building innovative and impactful solutions.</p>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="projects-container">
+        <h2>Featured Work</h2>
+        <div class="projects-grid">
+            <div class="project-card featured">
+                <div class="featured-badge">Featured</div>
+                <h3>Inter-Prep-AI</h3>
+                <p>
+                    An AI-driven platform for technical interview preparation, offering mock interviews, personalized feedback, and question banks powered by Gemini AI API. <em>In development, coming soon.</em>
+                </p>
+                <p class="tech">Technologies: React.js, PostgreSQL, Gemini AI API, JavaScript, CSS</p>
+            </div>
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>
+                    A sleek, responsive personal portfolio to showcase my skills and projects, built with a focus on clean design and user experience. <em>Work in progress.</em>
+                </p>
+                <p class="tech">Technologies: .NET Core MVC, HTML, CSS, JavaScript</p>
+
+                <div style="text-align: center;">
+                    <a href="https://github.com/yourusername/portfolio" target="_blank" class="project-link">View on GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>StudentERP</h3>
+                <p>
+                    A robust ERP system for educational institutions, developed during my internship at Webmyne Systems, enabling efficient student and course management.
+                </p>
+                <p class="tech">Technologies: .NET Core MVC, MySQL, HTML, CSS, JavaScript</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <div class="cta-card">
+            <p>
+                Want to see more or collaborate on a project? Visit my <a href="https://github.com/yourusername" target="_blank">GitHub</a> or <a href="/Portfolio/Contact">get in touch</a>!
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .intro-section {
+        background: #080808;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .intro-container {
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+        .intro-container h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #eceff1;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 6px rgba(77, 182, 172, 0.3);
+            margin-bottom: 15px;
+        }
+
+    .tagline {
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: #80d8ff;
+        margin-bottom: 20px;
+    }
+
+    .projects-section {
+        background: #0d0d0d;
+        padding: 40px 20px;
+    }
+
+    .projects-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .projects-container h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #eceff1;
+            margin-bottom: 30px;
+        }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .project-card {
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        position: relative;
+        width: 280px;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .project-card.featured {
+            border-color: #80d8ff;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+            border-color: #80d8ff;
+            background: rgba(128, 216, 255, 0.03);
+        }
+
+    .featured-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #80d8ff;
+        color: #0d0d0d;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .project-card h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #eceff1;
+        margin-bottom: 8px;
+        letter-spacing: 0.8px;
+    }
+
+    .project-card p {
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #b0bec5;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        flex-grow: 1;
+    }
+
+    .tech {
+        font-size: 0.8rem;
+        color: #80d8ff;
+        font-style: italic;
+        margin-bottom: 8px;
+    }
+
+    .project-link {
+        display: inline-block;
+        padding: 5px 10px;
+        background: transparent;
+        color: #80d8ff;
+        text-decoration: none;
+        border: 1px solid #b0bec5;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        align-self: flex-start;
+    }
+
+        .project-link:hover {
+            background: rgba(128, 216, 255, 0.1);
+            color: #eceff1;
+            border-color: #80d8ff;
+            box-shadow: 0 2px 6px rgba(128, 216, 255, 0.1);
+        }
+
+    .cta-section {
+        background: #080808;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .cta-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cta-card {
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+        .cta-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+        }
+
+        .cta-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #b0bec5;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-card a {
+            color: #80d8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .cta-card a:hover {
+                color: #4db6ac;
+            }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .intro-container h1
+
+    {
+        font-size: 2.2rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .projects-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: #80d8ff #1a1a1a;
+    }
+
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .projects-grid::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: #80d8ff;
+            border-radius: 4px;
+        }
+
+    .project-card {
+        width: 260px;
+        min-height: 280px;
+        padding: 10px;
+    }
+
+        .project-card.featured {
+            width: 260px;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+        }
+
+        .project-card p {
+            font-size: 0.8rem;
+        }
+
+    .tech {
+        font-size: 0.75rem;
+    }
+
+    .project-link {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .cta-card {
+        padding: 10px;
+    }
+
+        .cta-card p {
+            font-size: 0.9rem;
+        }
+
+    }
+</style>

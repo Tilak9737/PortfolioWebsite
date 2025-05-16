@@ -1,0 +1,155 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero-section">
+    <div class="hero-container">
+        <img src="~/files/20250418_141822(0).jpg" alt="Your Name Profile Picture" class="hero-img">
+        <h1>Tilakbhai Gandhi</h1>
+        <h2>Software Developer</h2>
+        <p class="tagline">Building innovative solutions with code and AI.</p>
+        <p class="bio">
+            Passionate about full-stack development and AI, I create projects like <i>Inter-Prep-AI</i> using React.js, .NET Core, and more. Explore my <a href="/Portfolio/Projects">work</a>!
+        </p>
+        <a href="/Portfolio/About" class="hero-cta">Discover My Journey</a>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh; /* Increased to fill space */
+        background: #080808; /* Deep near-black */
+        padding: 40px 20px;
+    }
+
+    .hero-container {
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .hero-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #b0bec5; /* Muted silver */
+        box-shadow: 0 0 12px rgba(77, 182, 172, 0.3); /* Teal glow */
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .hero-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 16px rgba(77, 182, 172, 0.5);
+        }
+
+    .hero-container h1 {
+        font-size: 3.2rem;
+        font-weight: 600;
+        color: #eceff1; /* Off-white */
+        letter-spacing: 1.5px;
+        text-shadow: 0 0 6px rgba(77, 182, 172, 0.3); /* Teal glow */
+        margin-bottom: 10px;
+    }
+
+    .hero-container h2 {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #b0bec5; /* Muted silver */
+        margin-bottom: 15px;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+        font-weight: 300;
+        color: #80d8ff; /* Soft cyan */
+        max-width: 500px;
+        margin: 0 auto 20px;
+    }
+
+    .bio {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: #b0bec5;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto 20px;
+    }
+
+        .bio a {
+            color: #80d8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .bio a:hover {
+                color: #4db6ac; /* Muted teal */
+            }
+
+    .hero-cta {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #80d8ff; /* Soft cyan */
+        color: #0d0d0d;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 400;
+        transition: background 0.3s ease;
+    }
+
+        .hero-cta:hover {
+            background: #4db6ac; /* Muted teal */
+        }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .hero-section
+
+    {
+        min-height: 90vh; /* Adjust for mobile */
+    }
+
+    .hero-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hero-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .bio {
+        font-size: 1rem;
+    }
+
+    }
+</style>

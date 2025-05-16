@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Your Name's Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <button class="navbar-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="navbar-container">
+                <div class="navbar-menu">
+                    <a asp-controller="Portfolio" asp-action="Home" class="@(ViewData["Title"] == "Home" ? "active" : "")">Home</a>
+                    <a asp-controller="Portfolio" asp-action="About" class="@(ViewData["Title"] == "About Me" ? "active" : "")">About</a>
+                    <a asp-controller="Portfolio" asp-action="Projects" class="@(ViewData["Title"] == "Projects" ? "active" : "")">Projects</a>
+                    <a asp-controller="Portfolio" asp-action="Skills" class="@(ViewData["Title"] == "Skills" ? "active" : "")">Skills</a>
+                    <a asp-controller="Portfolio" asp-action="Certificates" class="@(ViewData["Title"] == "Certificates" ? "active" : "")">Certificates</a>
+                    <a asp-controller="Portfolio" asp-action="Contact" class="@(ViewData["Title"] == "Contact" ? "active" : "")">Contact</a>
+                    <a id="resumeBtn" asp-controller="Portfolio" asp-action="DownloadResume">Resume</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="welcome-box" id="welcomeBox">
+        Welcome to Tilak Gandhi’s Portfolio
+    </div>
+
+    <div class="modal" id="resumeModal">
+        <div class="modal-content">
+            <h2>Download Resume?</h2>
+            <div class="modal-buttons">
+                <button class="modal-btn yes" id="confirmDownload">Yes</button>
+                <button class="modal-btn no" id="cancelDownload">No</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>Portfolio : Tilak Gandhi</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navbar toggle
+            const toggleButton = document.querySelector('.navbar-toggle');
+            const navbarMenu = document.querySelector('.navbar-menu');
+
+            toggleButton.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+            });
+
+            // Welcome message logic
+            if (!sessionStorage.getItem('welcomeShown')) {
+                const welcomeBox = document.getElementById('welcomeBox');
+                welcomeBox.style.display = 'block';
+                setTimeout(() => {
+                    welcomeBox.classList.add('slide-out');
+                    setTimeout(() => {
+                        welcomeBox.style.display = 'none';
+                        sessionStorage.setItem('welcomeShown', 'true');
+                    }, 500);
+                }, 3000);
+            }
+
+            // Resume download modal logic
+            const resumeBtn = document.getElementById('resumeBtn');
+            const resumeModal = document.getElementById('resumeModal');
+            const confirmDownload = document.getElementById('confirmDownload');
+            const cancelDownload = document.getElementById('cancelDownload');
+
+            resumeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                resumeModal.style.display = 'flex';
+            });
+
+            confirmDownload.addEventListener('click', () => {
+                window.location.href = resumeBtn.getAttribute('href');
+                resumeModal.style.display = 'none';
+            });
+
+            cancelDownload.addEventListener('click', () => {
+                resumeModal.style.display = 'none';
+            });
+
+            resumeModal.addEventListener('click', (e) => {
+                if (e.target === resumeModal) {
+                    resumeModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #eceff1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #0d0d0d;
+            padding: 12px 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid #b0bec5;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+            .navbar-menu a {
+                font-size: 0.95rem;
+                font-weight: 400;
+                color: #b0bec5;
+                text-decoration: none;
+                padding: 6px 12px;
+                border-radius: 4px;
+                position: relative;
+                transition: color 0.3s ease, background 0.3s ease;
+            }
+
+                .navbar-menu a:hover {
+                    color: #80d8ff;
+                    background: rgba(128, 216, 255, 0.1);
+                }
+
+                .navbar-menu a.active {
+                    color: #80d8ff;
+                    font-weight: 500;
+                    background: rgba(128, 216, 255, 0.15);
+                }
+
+                    .navbar-menu a.active::after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        bottom: -4px;
+                        left: 0;
+                        background: #80d8ff;
+                        animation: slideIn 0.3s ease-out;
+                    }
+
+        .navbar-toggle {
+            display: none;
+            font-size: 1.2rem;
+            color: #b0bec5;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .welcome-box {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #ffffff;
+            color: #0d0d0d;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #b0bec5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+            font-weight: 400;
+            display: none;
+            animation: popIn 0.5s ease-out;
+            z-index: 900;
+        }
+
+            .welcome-box.slide-out {
+                animation: slideRight 0.5s ease-out forwards;
+            }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(128, 216, 255, 0.2);
+            animation: fadeInModal 0.3s ease-out;
+            border: 1px solid #b0bec5;
+        }
+
+            .modal-content h2 {
+                font-size: 1.5rem;
+                color: #eceff1;
+                margin-bottom: 15px;
+            }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            .modal-btn.yes {
+                background: #80d8ff;
+                color: #0d0d0d;
+            }
+
+                .modal-btn.yes:hover {
+                    background: #4db6ac;
+                }
+
+            .modal-btn.no {
+                background: #b0bec5;
+                color: #0d0d0d;
+            }
+
+                .modal-btn.no:hover {
+                    background: #78909c;
+                }
+
+        main {
+            min-height: calc(100vh - 200px);
+            padding-top: 70px; /* Offset for fixed navbar */
+        }
+
+        footer {
+            background: #0d0d0d;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #b0bec5;
+        }
+
+        @@keyframes popIn {
+            from
+
+        {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        }
+
+        @@keyframes slideRight {
+            from
+
+        {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+
+        }
+
+        @@keyframes fadeInModal {
+            from
+
+        {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        }
+
+        @@keyframes slideIn {
+            from
+
+        {
+            width: 0;
+        }
+
+        to {
+            width: 100%;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .navbar
+
+        {
+            padding: 10px 20px;
+        }
+
+        .navbar-container {
+            justify-content: flex-start;
+        }
+
+        .navbar-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu a {
+                font-size: 0.9rem;
+                padding: 5px 10px;
+            }
+
+        .navbar-toggle {
+            display: block;
+        }
+
+        .welcome-box {
+            top: 120px;
+            right: 10px;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .modal-content {
+            max-width: 300px;
+            padding: 15px;
+        }
+
+            .modal-content h2 {
+                font-size: 1.3rem;
+            }
+
+        .modal-btn {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        main {
+            padding-top: 50px;
+        }
+
+        }
+    </style>
+</body>
+</html>

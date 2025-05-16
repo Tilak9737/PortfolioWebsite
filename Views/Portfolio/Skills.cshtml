@@ -1,0 +1,292 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Skills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="intro-section">
+    <div class="intro-container">
+        <h1>My Skills</h1>
+        <p class="tagline">Technical expertise for innovative solutions.</p>
+    </div>
+</section>
+
+<section class="skills-section">
+    <div class="skills-container">
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card" style="animation-delay: 0.2s;">
+                <h3>Programming</h3>
+                <ul>
+                    <li>C++</li>
+                    <li>C#</li>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="skill-card" style="animation-delay: 0.3s;">
+                <h3>Web Development</h3>
+                <ul>
+                    <li>.NET Core MVC</li>
+                    <li>React.js</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                </ul>
+            </div>
+            <div class="skill-card" style="animation-delay: 0.4s;">
+                <h3>Databases</h3>
+                <ul>
+                    <li>MySQL</li>
+                    <li>MS SQL</li>
+                    <li>PostgreSQL</li>
+                </ul>
+            </div>
+            <div class="skill-card second-row" style="animation-delay: 0.5s;">
+                <h3>AI/ML</h3>
+                <ul>
+                    <li>Gemini API</li>
+                </ul>
+            </div>
+            <div class="skill-card second-row" style="animation-delay: 0.6s;">
+                <h3>Tools</h3>
+                <ul>
+                    <li>Git</li>
+                    <li>VS Code</li>
+                    <li>Visual Studio</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <div class="cta-card">
+            <p>
+                Explore my <a href="https://github.com/yourusername" target="_blank">GitHub</a> or <a href="/Portfolio/Contact">connect</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .intro-section {
+        background: #080808;
+        padding: 25px 10px;
+        text-align: center;
+    }
+
+    .intro-container {
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+        .intro-container h1 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: #eceff1;
+            letter-spacing: 2px;
+            text-shadow: 0 0 3px rgba(77, 182, 172, 0.15);
+            margin-bottom: 10px;
+        }
+
+    .tagline {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: #80d8ff;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    .skills-section {
+        background: #0d0d0d;
+        padding: 25px 10px;
+    }
+
+    .skills-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .skills-container h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #eceff1;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .skill-card {
+        background: #1a1a1a;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, background 0.3s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        opacity: 0;
+        animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        min-width: 180px;
+    }
+
+        .skill-card.second-row {
+            grid-column: 2 / 3; /* Center under middle card */
+        }
+
+        .skill-card:nth-child(4) {
+            grid-column: 1 / 2; /* First card in second row */
+        }
+
+        .skill-card:nth-child(5) {
+            grid-column: 2 / 3; /* Second card in second row */
+        }
+
+        .skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+            border-color: #80d8ff;
+            background: rgba(128, 216, 255, 0.03);
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #eceff1;
+            margin-bottom: 8px;
+            letter-spacing: 0.8px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-card li {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #b0bec5;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+    .cta-section {
+        background: #080808;
+        padding: 25px 10px;
+        text-align: center;
+    }
+
+    .cta-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cta-card {
+        background: #1a1a1a;
+        border-radius: 6px;
+        padding: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: 1px solid #b0bec5;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+        .cta-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(128, 216, 255, 0.1);
+        }
+
+        .cta-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #b0bec5;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-card a {
+            color: #80d8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .cta-card a:hover {
+                color: #4db6ac;
+            }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .intro-container h1
+
+    {
+        font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+    }
+
+    .skills-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 10px;
+    }
+
+    .skill-card {
+        padding: 10px;
+        min-width: unset;
+    }
+
+        .skill-card.second-row {
+            grid-column: 1;
+        }
+
+        .skill-card:nth-child(4),
+        .skill-card:nth-child(5) {
+            grid-column: 1;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+        }
+
+        .skill-card li {
+            font-size: 0.8rem;
+        }
+
+    .cta-card p {
+        font-size: 0.9rem;
+    }
+
+    }
+</style>
